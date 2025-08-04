@@ -267,9 +267,9 @@ void MagiskInit::patch_ro_root() noexcept {
     if (access("/sbin", F_OK) == 0) {
         tmp_dir = "/sbin";
     } else {
-        tmp_dir = "/debug_ramdisk";
-        xmkdir("/data/debug_ramdisk", 0);
-        xmount("/debug_ramdisk", "/data/debug_ramdisk", nullptr, MS_MOVE, nullptr);
+        tmp_dir = "/oem";
+        xmkdir("/data/oem", 0);
+        xmount("/oem", "/data/oem", nullptr, MS_MOVE, nullptr);
     }
 
     setup_tmp(tmp_dir.data());
@@ -283,8 +283,8 @@ void MagiskInit::patch_ro_root() noexcept {
         xumount2(MIRRDIR, MNT_DETACH);
     } else {
         // Restore debug_ramdisk
-        xmount("/data/debug_ramdisk", "/debug_ramdisk", nullptr, MS_MOVE, nullptr);
-        rmdir("/data/debug_ramdisk");
+        xmount("/data/oem", "/oem", nullptr, MS_MOVE, nullptr);
+        rmdir("/data/oem");
     }
 
     xrename("overlay.d", ROOTOVL);
