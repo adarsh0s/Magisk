@@ -49,7 +49,7 @@ object AppContext : ContextWrapper(null),
             exitProcess(1)
         }
 
-        Os.setenv("PATH", "${Os.getenv("PATH")}:/debug_ramdisk:/sbin", true)
+        Os.setenv("PATH", "${Os.getenv("PATH")}:/oem:/sbin", true)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
