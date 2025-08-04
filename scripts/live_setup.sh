@@ -74,8 +74,8 @@ fi
 # Stop zygote (and previous setup if exists)
 magisk --stop 2>/dev/null
 stop
-if [ -d /debug_ramdisk ]; then
-  umount -l /debug_ramdisk 2>/dev/null
+if [ -d /oem ]; then
+  umount -l /oem 2>/dev/null
 fi
 
 # Make sure boot completed props are not set to 1
@@ -120,8 +120,8 @@ elif [ -e /sbin ]; then
   rm -rf /dev/sysroot
 else
   # Android Q+ without sbin
-  MAGISKTMP=/debug_ramdisk
-  mount_tmpfs /debug_ramdisk
+  MAGISKTMP=/oem
+  mount_tmpfs /oem
 fi
 
 # Magisk stuff
